@@ -9,6 +9,6 @@ export const validateBody = (req: Request, res: Response, next: NextFunction) =>
     return res.status(400).send('Not a valid body.');
   }
 
-  res.locals.fighters = body;
+  res.locals.fighters = validation.value;
   return next();
 }
