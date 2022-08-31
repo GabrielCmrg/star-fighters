@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/app.ts"
+    "start": "ts-node src/app.ts",
+    "create-db": "cd database && bash ./create-database && cd ..",
+    "destroy-db": "cd database && bash ./destroy-database && cd ..",
+    "connect-db": "cd database && bash ./connect-database && cd .."
   },
   "keywords": [],
   "author": "",
