@@ -15,3 +15,11 @@ export async function createFighter(register: any) {
     [username, wins, losses, draws]
   );
 }
+
+export async function updateFighterById(register: any, id: number) {
+  const { wins, losses, draws } = register;
+  await connection.query(
+    'update fighters set wins = wins + $1, losses = losses + $2, draws = draws + $3 where id = $4',
+    [wins, losses, draws, id]
+  );
+}
