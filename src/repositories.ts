@@ -23,3 +23,9 @@ export async function updateFighterById(register: any, id: number) {
     [wins, losses, draws, id]
   );
 }
+export async function getFightersOrdered() {
+  const { rows } = await connection.query(
+    'select username, wins, losses, draws from fighters order by wins desc, draws desc'
+  );
+  return rows;
+}
