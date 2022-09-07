@@ -4,7 +4,7 @@ import { createFighter, getFighterByUsername, updateFighterById, getFightersOrde
 
 function countStars(data: any[]): number {
   const stars: number = data.reduce(
-    (accumulated: number, element: any) => { accumulated + element.stargazers_count },
+    (accumulated: number, element: any) => accumulated + element.stargazers_count,
     0
   );
   return stars;
