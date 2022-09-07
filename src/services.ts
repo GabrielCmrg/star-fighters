@@ -14,6 +14,19 @@ export const battle = async (fighter1: string, fighter2: string) => {
     const fighter1StarCount: number = countStars(fighter1Data.data);
     const fighter2Data = await axios.get(`https://api.github.com/users/${fighter2}/repos`);
     const fighter2StarCount: number = countStars(fighter2Data.data);
+    let winner: string | null = null;
+    let loser: string | null = null;
+    const draw: boolean = fighter1StarCount === fighter2StarCount;
+    if (fighter1StarCount !== fighter2StarCount) {
+      winner = fighter1StarCount > fighter2StarCount ? fighter1 : fighter2;
+      loser = fighter1StarCount > fighter2StarCount ? fighter2 : fighter1;
+    }
+    const battleResult = {
+      winner,
+      loser,
+      draw,
+    };
+    return battleResult;
   } catch (error: any) {
     console.error(error);
     if (error.response.status === 404) {
@@ -21,9 +34,4 @@ export const battle = async (fighter1: string, fighter2: string) => {
     }
     throw error;
   }
-  return {
-    "winner": "fulano", // nulo se empate
-    "loser": "ciclana", //nulo se empate
-    "draw": false // true se empate
-  };
 }
