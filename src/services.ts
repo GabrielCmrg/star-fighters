@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { createFighter, getFighterByUsername, updateFighterById } from './repositories';
+import { createFighter, getFighterByUsername, updateFighterById, getFightersOrdered } from './repositories';
 
 function countStars(data: any[]): number {
   const stars: number = data.reduce(
@@ -64,4 +64,9 @@ export const battle = async (fighter1: string, fighter2: string) => {
   };
   await storeResult(battleResult, fighter1, fighter2);
   return battleResult;
+}
+
+export async function retrieveRanking() {
+  const fighters: any[] = await getFightersOrdered();
+  return { fighters };
 }
